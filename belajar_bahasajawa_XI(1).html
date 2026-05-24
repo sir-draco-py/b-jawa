@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bahasa Jawa XI — Modul UAS Genap</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230e0b07'/><text y='82' x='50' font-size='70' text-anchor='middle' font-family='serif' fill='%23d4a843'>ꦗ</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&family=Noto+Serif+Javanese&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080604;--bg1:#0f0c07;--bg2:#161008;--bg3:#1d1609;--bg4:#24190b;
+  --gold:#d4a843;--gold2:#f0c96a;--gold3:#ffe8a0;--gold-dim:#6b5020;--gold-glow:rgba(212,168,67,.18);
+  --cream:#f5ecca;--cream2:#e2d5ae;--cream3:#c8b98a;
+  --teal:#2e6b5e;--teal2:#4a9585;--teal3:#7dc4b5;
+  --rust:#a84830;--rust2:#d4694a;--plum:#6e3d7a;--plum2:#a06ab0;
+  --text:#cdbf96;--text2:#a89870;--text3:#7a6a48;
+  --border:#2e2212;--border2:#3d2e16;--card:#100d06;--card2:#181208;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;min-height:100vh;overflow-x:hidden;line-height:1.7}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 40% at 15% 10%,rgba(212,168,67,.07) 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 85% 90%,rgba(74,149,133,.06) 0%,transparent 60%),radial-gradient(ellipse 40% 60% at 50% 50%,rgba(110,61,122,.04) 0%,transparent 70%);pointer-events:none;z-index:0}
+
+/* SIDEBAR */
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:270px;background:linear-gradient(180deg,var(--bg1) 0%,var(--bg) 100%);border-right:1px solid var(--border);z-index:100;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--gold-dim) transparent;transition:transform .35s cubic-bezier(.4,0,.2,1)}
+.sidebar::-webkit-scrollbar{width:4px}.sidebar::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px}
+.sb-head{padding:28px 22px 22px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg1);z-index:2}
+.sb-logo{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.sb-logo-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--gold-dim),var(--gold));border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Noto Serif Javanese',serif;font-size:1.3rem;color:var(--bg);flex-shrink:0;box-shadow:0 0 16px rgba(212,168,67,.25)}
+.sb-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--cream);line-height:1.25}
+.sb-meta{font-size:.68rem;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
+.sb-progress-label{display:flex;justify-content:space-between;font-size:.68rem;color:var(--text3);margin-bottom:5px;letter-spacing:.05em}
+.sb-progress-bar{height:3px;background:var(--border2);border-radius:2px;overflow:hidden}
+.sb-progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--gold-dim),var(--gold2));border-radius:2px;transition:width .5s ease}
+.nav-group{padding:14px 12px 4px}
+.nav-group-label{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-dim);padding:0 10px;margin-bottom:4px}
+.nav-btn{display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;border-radius:8px;border:1px solid transparent;background:none;color:var(--text3);font-family:'Outfit',sans-serif;font-size:.84rem;font-weight:400;cursor:pointer;text-align:left;transition:all .2s;margin-bottom:2px}
+.nav-btn:hover{background:var(--bg3);color:var(--cream2);border-color:var(--border)}
+.nav-btn.active{background:linear-gradient(135deg,rgba(212,168,67,.14),rgba(212,168,67,.06));color:var(--gold2);border-color:var(--gold-dim);font-weight:500}
+.nav-icon{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.nav-btn.active .nav-icon{background:rgba(212,168,67,.15)}
+.nav-chip{margin-left:auto;font-size:.6rem;padding:2px 7px;border-radius:20px;background:var(--bg3);color:var(--text3);border:1px solid var(--border);white-space:nowrap}
+.nav-btn.active .nav-chip{background:rgba(212,168,67,.1);color:var(--gold);border-color:var(--gold-dim)}
+
+/* MAIN */
+.main{margin-left:270px;min-height:100vh;position:relative;z-index:1}
+.sec{display:none;animation:fadeUp .38s ease}.sec.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* PAGE HERO */
+.page-hero{padding:52px 60px 44px;background:linear-gradient(135deg,var(--bg2) 0%,var(--bg1) 60%,var(--bg) 100%);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;right:-80px;top:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(212,168,67,.08) 0%,transparent 70%);pointer-events:none}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(212,168,67,.1);border:1px solid var(--gold-dim);color:var(--gold);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:22px}
+.hero-eyebrow::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%}
+.page-hero h1{font-family:'Cormorant Garamond',serif;font-size:3.2rem;font-weight:700;color:var(--cream);line-height:1.1;max-width:700px;margin-bottom:16px}
+.page-hero h1 em{color:var(--gold2);font-style:italic}
+.hero-desc{color:var(--text2);font-size:.92rem;max-width:560px;line-height:1.75}
+.hero-stats{display:flex;gap:40px;margin-top:36px;padding-top:28px;border-top:1px solid var(--border)}
+.hstat-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:var(--gold2);line-height:1}
+.hstat-label{font-size:.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
+
+/* SEC PAGE HERO */
+.sec-page-hero{padding:44px 60px 36px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,var(--bg2),var(--bg));position:relative;overflow:hidden}
+.sec-page-hero::after{content:attr(data-kanji);position:absolute;right:48px;bottom:-20px;font-family:'Noto Serif Javanese',serif;font-size:6rem;color:rgba(212,168,67,.06);pointer-events:none;line-height:1}
+.sec-eyebrow{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.sec-eyebrow span{display:inline-block;padding:2px 10px;background:rgba(212,168,67,.08);border:1px solid var(--gold-dim);border-radius:20px;color:var(--gold)}
+.sec-page-hero h2{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:700;color:var(--cream);line-height:1.15;margin-bottom:12px}
+.sec-page-hero p{color:var(--text2);font-size:.9rem;max-width:580px;line-height:1.75}
+
+/* CONTENT */
+.content{padding:44px 60px}
+.h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:var(--gold2);margin:36px 0 16px;padding-bottom:10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.h3::before{content:'';width:4px;height:1.4em;background:linear-gradient(180deg,var(--gold),var(--gold-dim));border-radius:2px;flex-shrink:0}
+.h3:first-child{margin-top:0}
+.h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--cream2);margin:22px 0 10px}
+
+/* GRIDS */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:16px 0}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:16px 0}
+
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;transition:border-color .2s,box-shadow .2s}
+.card:hover{border-color:var(--gold-dim);box-shadow:0 4px 20px rgba(212,168,67,.08)}
+.card-eyebrow{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.card-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--cream);margin-bottom:10px;line-height:1.3}
+.card p,.card li{font-size:.875rem;color:var(--text);line-height:1.8}
+.card strong{color:var(--gold2)}
+.card ul,.card ol{padding-left:18px}
+.card li{margin-bottom:2px}
+
+/* BOXES */
+.box{border-radius:10px;padding:18px 22px;margin:16px 0;font-size:.875rem;line-height:1.8}
+.box-label{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;font-weight:600;display:flex;align-items:center;gap:8px}
+.box-gold{background:rgba(212,168,67,.07);border:1px solid var(--gold-dim);border-left:3px solid var(--gold)}
+.box-gold .box-label{color:var(--gold2)}.box-gold p,.box-gold li{color:var(--cream2)}
+.box-teal{background:rgba(74,149,133,.08);border:1px solid rgba(74,149,133,.3);border-left:3px solid var(--teal2)}
+.box-teal .box-label{color:var(--teal3)}.box-teal p,.box-teal li{color:var(--cream2)}
+.box-rust{background:rgba(168,72,48,.08);border:1px solid rgba(168,72,48,.3);border-left:3px solid var(--rust2)}
+.box-rust .box-label{color:var(--rust2)}.box-rust p,.box-rust li{color:var(--cream2)}
+.box-plum{background:rgba(110,61,122,.08);border:1px solid rgba(110,61,122,.35);border-left:3px solid var(--plum2)}
+.box-plum .box-label{color:var(--plum2)}.box-plum p,.box-plum li{color:var(--cream2)}
+.box ul,.box ol{padding-left:18px}.box li{margin-bottom:4px}.box p+p{margin-top:8px}.box strong{font-weight:600}
+
+/* TABLE */
+.tbl-wrap{overflow-x:auto;margin:16px 0;border-radius:10px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.84rem}
+th{background:rgba(212,168,67,.1);color:var(--gold2);padding:10px 14px;text-align:left;border-bottom:1px solid var(--gold-dim);font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap}
+td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top;line-height:1.7}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(212,168,67,.03)}
+
+/* AKSARA */
+.jv{font-family:'Noto Serif Javanese',serif}
+.aksara-showcase{background:var(--card2);border:1px solid var(--border2);border-radius:12px;padding:28px 24px;text-align:center;margin:16px 0}
+.aksara-showcase .jv{font-size:3rem;color:var(--gold2);letter-spacing:.12em;line-height:2.2;display:block;text-shadow:0 0 24px rgba(212,168,67,.2)}
+.aksara-showcase p{color:var(--text3);font-size:.82rem;letter-spacing:.06em}
+.aksara-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:16px 0}
+.aksara-cell{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:12px 8px;text-align:center;transition:border-color .2s,background .2s}
+.aksara-cell:hover{border-color:var(--gold-dim);background:var(--bg3)}
+.aksara-cell .jv{font-size:1.9rem;color:var(--gold2);display:block;line-height:1.8}
+.aksara-cell small{font-size:.7rem;color:var(--text3);letter-spacing:.06em;display:block;margin-top:2px}
+
+/* STEPS */
+.steps{counter-reset:step;margin:16px 0;display:flex;flex-direction:column;gap:0}
+.step{display:flex;gap:16px;position:relative}
+.step:not(:last-child)::after{content:'';position:absolute;left:15px;top:36px;bottom:0;width:2px;background:linear-gradient(180deg,var(--gold-dim),var(--border))}
+.step-num{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--gold-dim),var(--bg3));border:1px solid var(--gold-dim);color:var(--gold2);font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:1}
+.step-body{padding:4px 0 24px;flex:1}
+.step-title{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:var(--cream);margin-bottom:6px}
+.step-desc{font-size:.86rem;color:var(--text2);line-height:1.75}
+.step-desc strong{color:var(--gold2)}.step-desc em{color:var(--cream3);font-style:italic;font-family:'Cormorant Garamond',serif}
+
+/* TAGS */
+.tag{display:inline-block;font-size:.68rem;padding:2px 9px;border-radius:20px;border:1px solid;margin:2px}
+.tag-gold{background:rgba(212,168,67,.1);color:var(--gold);border-color:var(--gold-dim)}
+.tag-teal{background:rgba(74,149,133,.1);color:var(--teal3);border-color:rgba(74,149,133,.35)}
+.tag-rust{background:rgba(168,72,48,.1);color:var(--rust2);border-color:rgba(168,72,48,.35)}
+.tag-plum{background:rgba(110,61,122,.1);color:var(--plum2);border-color:rgba(110,61,122,.35)}
+
+/* QUIZ */
+.quiz-wrap{display:flex;flex-direction:column;gap:20px}
+.quiz-item{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.quiz-q{padding:18px 22px;background:var(--card2);border-bottom:1px solid var(--border);font-size:.9rem;color:var(--cream2);line-height:1.65;font-weight:500}
+.quiz-q-num{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;color:var(--gold);margin-right:6px}
+.quiz-opts{padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.quiz-opt{background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:11px 16px;color:var(--text2);font-family:'Outfit',sans-serif;font-size:.84rem;cursor:pointer;text-align:left;transition:all .18s;line-height:1.55}
+.quiz-opt:hover:not(:disabled){border-color:var(--gold-dim);color:var(--cream);background:var(--bg4)}
+.quiz-opt.correct{background:rgba(74,149,133,.15);border-color:var(--teal2);color:var(--teal3);font-weight:500}
+.quiz-opt.wrong{background:rgba(168,72,48,.12);border-color:var(--rust);color:var(--rust2)}
+.quiz-opt:disabled{cursor:default}
+.quiz-explain{margin:0 16px 14px;padding:12px 16px;background:rgba(212,168,67,.06);border:1px solid var(--gold-dim);border-radius:8px;font-size:.82rem;color:var(--text2);line-height:1.65;display:none}
+.quiz-explain.show{display:block}.quiz-explain strong{color:var(--gold2)}
+.score-banner{background:var(--card2);border:1px solid var(--gold-dim);border-radius:12px;padding:24px 28px;margin-bottom:24px;display:flex;align-items:center;gap:20px}
+.score-num{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:700;color:var(--gold2);line-height:1;flex-shrink:0}
+.score-bar{height:6px;background:var(--border);border-radius:3px;margin-top:8px;overflow:hidden}
+.score-fill{height:100%;background:linear-gradient(90deg,var(--teal2),var(--gold2));border-radius:3px;transition:width .6s ease}
+
+/* OVERVIEW */
+.ov-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.ov-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px 22px;cursor:pointer;transition:all .25s;text-decoration:none;display:block;position:relative;overflow:hidden}
+.ov-card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(212,168,67,.08) 0%,transparent 60%);opacity:0;transition:opacity .3s}
+.ov-card:hover{border-color:var(--gold-dim);transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.4)}.ov-card:hover::after{opacity:1}
+.ov-icon{font-size:2.2rem;margin-bottom:14px;display:block}
+.ov-title{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:var(--cream);margin-bottom:8px}
+.ov-desc{font-size:.82rem;color:var(--text3);line-height:1.65;margin-bottom:14px}
+.ov-arrow{font-size:.75rem;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.ov-arrow::after{content:'→';transition:transform .2s}.ov-card:hover .ov-arrow::after{transform:translateX(4px)}
+
+/* EXAMPLE BOX */
+.example-box{background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:20px 24px;margin:14px 0}
+.example-title{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.example-title::before{content:'';display:inline-block;width:14px;height:1px;background:var(--border2)}
+hr{border:none;border-top:1px solid var(--border);margin:32px 0}
+
+/* MOBILE */
+.mob-toggle{display:none;position:fixed;bottom:20px;right:20px;width:46px;height:46px;border-radius:50%;background:var(--gold);color:var(--bg);border:none;font-size:1.1rem;cursor:pointer;z-index:200;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(212,168,67,.4)}
+@media(max-width:960px){
+  .sidebar{transform:translateX(-100%)}.sidebar.open{transform:translateX(0)}
+  .main{margin-left:0}.page-hero,.sec-page-hero{padding:32px 24px}
+  .page-hero h1{font-size:2.2rem}.content{padding:28px 24px}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .ov-grid{grid-template-columns:1fr 1fr}.aksara-grid{grid-template-columns:repeat(4,1fr)}
+  .mob-toggle{display:flex}.hero-stats{gap:24px}
+}
+@media(max-width:560px){.ov-grid{grid-template-columns:1fr}.aksara-grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="sb-head">
+    <div class="sb-logo">
+      <div class="sb-logo-icon"><span class="jv">ꦗ</span></div>
+      <div><div class="sb-title">Bahasa Jawa XI</div><div class="sb-meta">UAS Genap · 2025/2026</div></div>
+    </div>
+    <div><div class="sb-progress-label"><span>Progress Belajar</span><span id="progText">0 / 6 topik</span></div><div class="sb-progress-bar"><div class="sb-progress-fill" id="progFill"></div></div></div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Navigasi</div>
+    <button class="nav-btn active" onclick="go('home',this)"><span class="nav-icon">🏠</span> Beranda</button>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Materi Ujian</div>
+    <button class="nav-btn" onclick="go('pariwara',this)"><span class="nav-icon">📢</span> Pariwara<span class="nav-chip">Materi 1–5</span></button>
+    <button class="nav-btn" onclick="go('sesorah',this)"><span class="nav-icon">🎤</span> Sesorah<span class="nav-chip">Materi 6–15</span></button>
+    <button class="nav-btn" onclick="go('novel',this)"><span class="nav-icon">📖</span> Novel Jawa<span class="nav-chip">Materi 16–19</span></button>
+    <button class="nav-btn" onclick="go('aksara',this)"><span class="nav-icon">✍️</span> Aksara Jawa<span class="nav-chip">Materi 20–23</span></button>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-label">Evaluasi</div>
+    <button class="nav-btn" onclick="go('latihan',this)"><span class="nav-icon">📝</span> Latihan Soal</button>
+    <button class="nav-btn" onclick="go('ringkasan',this)"><span class="nav-icon">⚡</span> Ringkasan Cepat</button>
+  </div>
+</nav>
+<button class="mob-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+
+<main class="main">
+
+<!-- HOME -->
+<div id="home" class="sec active">
+  <div class="page-hero">
+    <div class="hero-eyebrow">Kisi-Kisi Resmi · Kurikulum Merdeka</div>
+    <h1>Modul Belajar<br><em>Bahasa Jawa</em><br>Kelas XI</h1>
+    <p class="hero-desc">Materi lengkap dan mendalam berdasarkan kisi-kisi soal UAS Genap 2025/2026 Tipe A — mencakup Pariwara, Sesorah, Novel Jawa, dan Aksara Jawa.</p>
+    <div class="hero-stats">
+      <div><div class="hstat-num">4</div><div class="hstat-label">Topik Utama</div></div>
+      <div><div class="hstat-num">23</div><div class="hstat-label">Capaian Materi</div></div>
+      <div><div class="hstat-num">Sem 1–2</div><div class="hstat-label">Cakupan</div></div>
+      <div><div class="hstat-num">Tipe A</div><div class="hstat-label">Varian Soal</div></div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="ov-grid">
+      <a class="ov-card" onclick="go('pariwara',document.querySelectorAll('.nav-btn')[1])">
+        <span class="ov-icon">📢</span><div class="ov-title">Pariwara</div>
+        <div class="ov-desc">Iklan dalam Bahasa Jawa — pengertian, jenis (3 klasifikasi), struktur, ciri-ciri, unsur menarik, dan cara menyusun.</div>
+        <div class="ov-arrow">Materi 1–5</div>
+      </a>
+      <a class="ov-card" onclick="go('sesorah',document.querySelectorAll('.nav-btn')[2])">
+        <span class="ov-icon">🎤</span><div class="ov-title">Sesorah</div>
+        <div class="ov-desc">Pidato Bahasa Jawa — struktur 6 bagian urut, tujuan, fungsi duka, 4 metode, wosing atur, tema sesorah.</div>
+        <div class="ov-arrow">Materi 6–15</div>
+      </a>
+      <a class="ov-card" onclick="go('novel',document.querySelectorAll('.nav-btn')[3])">
+        <span class="ov-icon">📖</span><div class="ov-title">Novel Jawa</div>
+        <div class="ov-desc">Roman / novel berbahasa Jawa — pengertian, ciri, 3 jenis klasifikasi, struktur alur, unsur intrinsik, pitutur luhur.</div>
+        <div class="ov-arrow">Materi 16–19</div>
+      </a>
+      <a class="ov-card" onclick="go('aksara',document.querySelectorAll('.nav-btn')[4])">
+        <span class="ov-icon">✍️</span><div class="ov-title">Aksara Jawa</div>
+        <div class="ov-desc">20 aksara dasar, pasangan, sandhangan vokal & konsonan lengkap, angka Jawa, dan transliterasi Latin ↔ Aksara.</div>
+        <div class="ov-arrow">Materi 20–23</div>
+      </a>
+      <a class="ov-card" onclick="go('latihan',document.querySelectorAll('.nav-btn')[5])">
+        <span class="ov-icon">📝</span><div class="ov-title">Latihan Soal</div>
+        <div class="ov-desc">Soal-soal interaktif bergaya ujian lengkap dengan penjelasan jawaban untuk semua topik kisi-kisi.</div>
+        <div class="ov-arrow">Mulai latihan</div>
+      </a>
+      <a class="ov-card" onclick="go('ringkasan',document.querySelectorAll('.nav-btn')[6])">
+        <span class="ov-icon">⚡</span><div class="ov-title">Ringkasan Cepat</div>
+        <div class="ov-desc">Semua poin penting satu halaman. Ideal untuk review kilat malam sebelum ujian besok pagi.</div>
+        <div class="ov-arrow">Baca ringkasan</div>
+      </a>
+    </div>
+    <div class="box box-gold" style="margin-top:32px">
+      <div class="box-label">📌 Cara Pakai Modul Ini</div>
+      <ul>
+        <li>Klik topik dari kartu di atas atau dari <strong>sidebar kiri</strong> untuk masuk ke materi</li>
+        <li>Setiap topik berisi penjelasan mendalam dengan contoh kalimat Bahasa Jawa asli</li>
+        <li>Setelah belajar, kerjakan <strong>Latihan Soal</strong> — klik jawaban untuk langsung dicek</li>
+        <li>Malam sebelum ujian, baca <strong>Ringkasan Cepat ⚡</strong> untuk memantapkan semua hafalan</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- PARIWARA -->
+<div id="pariwara" class="sec">
+  <div class="sec-page-hero" data-kanji="ꦥ">
+    <div class="sec-eyebrow">Materi 1–5 <span>Topik 1</span></div>
+    <h2>Pariwara</h2>
+    <p>Pariwara = iklan dalam Bahasa Jawa. Mencakup: pengertian, jenis (3 klasifikasi), struktur, ciri-ciri bahasa & visual, isi pariwara, dan unsur-unsur yang membuat pariwara menarik.</p>
+  </div>
+  <div class="content">
+
+    <div class="h3">1. Pengertian Pariwara</div>
+    <div class="card">
+      <div class="card-eyebrow">Materi 1 — Definisi</div>
+      <div class="card-title">Apa itu Pariwara?</div>
+      <p><strong>Pariwara</strong> yaiku wacana / teks kang ngandharake informasi babagan barang utawa jasa kanthi tujuan supaya wong-wong gelem tuku utawa nggunakake produk/jasa kasebut.</p>
+      <p style="margin-top:8px">Dalam Bahasa Indonesia, pariwara = <strong>iklan</strong> atau <strong>advertensi</strong>. Pariwara disebarluaskan melalui berbagai media untuk menarik perhatian khalayak.</p>
+      <div class="box box-gold" style="margin-top:14px">
+        <div class="box-label">4 Tujuan Pariwara</div>
+        <ul>
+          <li><strong>Ngandhakake / Informatif</strong> — memberitahu masyarakat tentang produk/jasa baru</li>
+          <li><strong>Ngajak / Persuasif</strong> — membujuk masyarakat agar mau membeli atau menggunakan</li>
+          <li><strong>Ngelingake / Reminder</strong> — mengingatkan kembali tentang produk yang sudah ada</li>
+          <li><strong>Nguatake / Reinforcing</strong> — memperkuat keyakinan konsumen yang sudah membeli</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="h3">2. Jenis-Jenis Pariwara</div>
+    <div class="box box-teal"><div class="box-label">Materi 1 & 4 — 3 Cara Klasifikasi Pariwara</div><p>Pariwara dapat dibedakan berdasarkan 3 kriteria utama. Masing-masing menghasilkan pembagian yang berbeda.</p></div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-eyebrow">Klasifikasi A — Berdasarkan Media</div>
+        <div class="card-title">Media Penyebaran</div>
+        <ul>
+          <li><strong>Pariwara cetak</strong> — koran, majalah, brosur, pamflet, spanduk, poster, baliho</li>
+          <li><strong>Pariwara elektronik</strong> — TV, radio, internet (medsos, YouTube, website)</li>
+          <li><strong>Pariwara luar ruang (outdoor)</strong> — papan reklame, billboard, videotron di jalan raya</li>
+          <li><strong>Pariwara dalam ruang (indoor)</strong> — poster di toko, flyer, roll banner</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">Klasifikasi B — Berdasarkan Isi/Tujuan</div>
+        <div class="card-title">Tujuan Pembuatan</div>
+        <ul>
+          <li><strong>Pariwara komersial / niaga</strong> — bertujuan mendapat keuntungan, mempromosikan produk/jasa. Contoh: iklan sabun, motor, makanan</li>
+          <li><strong>Pariwara nonkomersial / layanan masyarakat</strong> — tidak mencari untung, untuk kepentingan umum. Contoh: iklan hemat listrik, bahaya narkoba, KB</li>
+          <li><strong>Pariwara pengumuman</strong> — menyampaikan info penting. Contoh: lowongan kerja, lelang</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">Klasifikasi C — Berdasarkan Sifat</div>
+        <div class="card-title">Sifat Pesan</div>
+        <ul>
+          <li><strong>Pariwara informatif</strong> — memberi tahu adanya produk baru / informasi baru</li>
+          <li><strong>Pariwara persuasif</strong> — membujuk konsumen agar memilih produk tertentu</li>
+          <li><strong>Pariwara pengingat</strong> — mengingatkan konsumen tentang produk lama</li>
+          <li><strong>Pariwara komparatif</strong> — membandingkan produk dengan kompetitor</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="h3">3. Struktur Pariwara</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">
+        <div class="step-title">Judul / Headline</div>
+        <div class="step-desc">Kalimat utama, pertama dilihat, paling besar. Harus singkat, mencolok, dan langsung mengena. <em>Contoh: "WEDANG JAHE ASLI — ANGET LAN NYEHATKE!"</em></div>
+      </div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">
+        <div class="step-title">Sub-headline / Subjudul</div>
+        <div class="step-desc">Penjelas dari judul. Sifatnya opsional. <em>Contoh: "Dipilih saka jahe pilihan, tanpa pengawet, alami 100%"</em></div>
+      </div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">
+        <div class="step-title">Badan Teks / Body Copy</div>
+        <div class="step-desc">Isi utama iklan — penjelasan lengkap produk/jasa, keunggulan, manfaat, dan alasan memilih produk ini. <strong>Inilah inti informasi pariwara.</strong></div>
+      </div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body">
+        <div class="step-title">Slogan / Tagline</div>
+        <div class="step-desc">Kalimat pendek, berirama (<em>purwakanthi</em>), mudah diingat. Menjadi ciri khas produk. <em>Contoh: "Sehat, Seger, Murah Meriah!"</em></div>
+      </div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-body">
+        <div class="step-title">Identitas / Logo</div>
+        <div class="step-desc">Nama merek, logo, alamat, nomor telepon, website, medsos. Agar konsumen tahu ke mana menghubungi. <em>Contoh: "📍 Jl. Raya Klaten No. 15 | WA: 0812-xxxx"</em></div>
+      </div></div>
+    </div>
+
+    <div class="h3">4. Ciri-Ciri Pariwara yang Menarik</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-eyebrow">Aspek Kebahasaan (Materi 2)</div>
+        <div class="card-title">Ciri dari Segi Bahasa</div>
+        <ul>
+          <li><strong>Singkat, padat, cetha</strong> — tidak bertele-tele, langsung ke inti</li>
+          <li><strong>Persuasif</strong> — kalimat ajakan/bujukan yang memengaruhi</li>
+          <li><strong>Positif</strong> — kata-kata yang menimbulkan kesan baik dan meyakinkan</li>
+          <li><strong>Unik lan kreatif</strong> — pilihan kata yang tidak biasa dan memorable</li>
+          <li><strong>Nggunakake purwakanthi</strong> — rima/ritme agar slogan mudah diingat. Contoh: <em>"Murah, Meriah, Berkah!"</em></li>
+          <li><strong>Hiperbola (kadang)</strong> — sedikit melebih-lebihkan untuk menarik perhatian. Contoh: <em>"Rasane ora ana tandhingane!"</em></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">Aspek Visual (Materi 2)</div>
+        <div class="card-title">Ciri dari Segi Tampilan</div>
+        <ul>
+          <li><strong>Desain menarik lan mencolok</strong> — tampilannya langsung menarik perhatian</li>
+          <li><strong>Warna yang sesuai</strong> — pilihan warna serasi dan mewakili karakter produk</li>
+          <li><strong>Gambar / ilustrasi relevan</strong> — foto produk yang nyata dan berkualitas tinggi</li>
+          <li><strong>Ukuran huruf bervariasi</strong> — judul lebih besar, isi lebih kecil, hierarki jelas</li>
+          <li><strong>Layout rapi</strong> — penempatan elemen tertata, tidak semrawut, nyaman dilihat</li>
+          <li><strong>Logo/identitas jelas</strong> — nama merek mudah ditemukan di iklan</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="h3">5. Isi Pariwara</div>
+    <div class="box box-plum">
+      <div class="box-label">Materi 3 — Informasi dalam Pariwara</div>
+      <p>Untuk soal tentang isi pariwara, perhatikan 6 informasi pokok yang biasanya ada:</p>
+      <ul>
+        <li><strong>Produk / jasa apa</strong> yang ditawarkan</li>
+        <li><strong>Keunggulan / manfaat</strong> produk tersebut dibanding yang lain</li>
+        <li><strong>Harga</strong> (jika disebutkan)</li>
+        <li><strong>Cara mendapatkan</strong> — di mana bisa dibeli, cara memesan</li>
+        <li><strong>Waktu / promo</strong> — apakah ada diskon, batas waktu penawaran</li>
+        <li><strong>Identitas penjual</strong> — nama toko/merek, nomor kontak, alamat</li>
+      </ul>
+    </div>
+
+    <div class="h3">6. Unsur yang Membuat Pariwara Menarik</div>
+    <div class="box box-rust">
+      <div class="box-label">Materi 5 — Unsur Penarik Perhatian</div>
+      <ul>
+        <li><strong>Headline yang kuat</strong> — judul yang langsung bikin penasaran atau "ngena"</li>
+        <li><strong>Visual yang eye-catching</strong> — gambar produk jelas atau model yang menarik</li>
+        <li><strong>Slogan yang mudah diingat</strong> — pendek, berirama (purwakanthi), berkesan</li>
+        <li><strong>Warna dan desain mencolok</strong> — berbeda dari lingkungan sekitarnya</li>
+        <li><strong>Informasi yang jelas dan lengkap</strong> — calon konsumen langsung tahu apa yang ditawarkan</li>
+        <li><strong>Call to action yang tegas</strong> — ajakan langsung: <em>"Tuku saiki!"</em>, <em>"Ojo nganti ketelatan!"</em>, <em>"Hubungi kami sekarang!"</em></li>
+        <li><strong>Penawaran spesial</strong> — diskon, bonus, free ongkir, cashback membuat orang lebih tertarik</li>
+        <li><strong>Testimoni / bukti</strong> — kesaksian pelanggan yang sudah puas meningkatkan kepercayaan</li>
+      </ul>
+    </div>
+
+    <div class="h3">7. Contoh Teks Pariwara</div>
+    <div class="example-box">
+      <div class="example-title">Contoh Pariwara Komersial — Produk Kuliner</div>
+      <div style="background:var(--bg4);border-radius:8px;padding:20px;border:1px solid var(--border2)">
+        <p style="font-size:1.05rem;font-weight:600;color:var(--gold2);margin-bottom:4px">🌿 BAKSO GRANAT MBAH GIMBAL</p>
+        <p style="font-size:.85rem;color:var(--cream3);font-style:italic;margin-bottom:12px">"Gedhe, Kenthel, Mantep — Ora Bakal Getun!"</p>
+        <p style="font-size:.84rem;line-height:1.8;color:var(--cream2)">Bakso asli daging sapi pilihan, tanpa MSG berlebihan. Ukurane gedhe koyo bola tenis! Satu porsi isi 3 bakso + mie + bihun + kuah gurih.</p>
+        <p style="font-size:.82rem;color:var(--text2);margin-top:10px">💰 Harga mulai Rp 12.000,-/porsi | Buka 10.00–22.00 WIB</p>
+        <p style="font-size:.82rem;color:var(--text3)">📍 Jl. Pemuda No. 7, Klaten | WA: 0812-3456-7890</p>
+      </div>
+      <div style="font-size:.8rem;color:var(--text3);margin-top:12px;line-height:2">
+        <strong style="color:var(--gold)">Analisis Struktur:</strong><br>
+        <span class="tag tag-gold">Headline</span> "BAKSO GRANAT MBAH GIMBAL" &nbsp;
+        <span class="tag tag-teal">Slogan</span> "Gedhe, Kenthel, Mantep — Ora Bakal Getun!" (purwakanthi)<br>
+        <span class="tag tag-rust">Body copy</span> Deskripsi produk & keunggulannya &nbsp;
+        <span class="tag tag-plum">Identitas</span> Harga, jam buka, alamat, kontak WA
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SESORAH -->
+<div id="sesorah" class="sec">
+  <div class="sec-page-hero" data-kanji="ꦱ">
+    <div class="sec-eyebrow">Materi 6–15 <span>Topik 2 — Terbanyak</span></div>
+    <h2>Sesorah</h2>
+    <p>Sesorah = pidato dalam Bahasa Jawa. Topik ini paling banyak di kisi-kisi (10 capaian). Mencakup pengertian, tujuan, fungsi duka, 4 metode, struktur 6 bagian, wosing atur, kesesuaian, dan tema sesorah.</p>
+  </div>
+  <div class="content">
+
+    <div class="h3">1. Pengertian Sesorah</div>
+    <div class="card">
+      <div class="card-eyebrow">Materi 6</div>
+      <div class="card-title">Apa itu Sesorah?</div>
+      <p><strong>Sesorah</strong> yaiku medharake gagasan, pikiran, utawa panemu kanthi lisan ing ngarep wong akeh ing adicara tartamtu.</p>
+      <p style="margin-top:8px">Sesorah = <strong>pidato</strong> atau <strong>sambutan</strong> dalam Bahasa Indonesia. Disampaikan secara lisan di hadapan khalayak dalam suatu acara tertentu.</p>
+      <div class="box box-teal" style="margin-top:12px">
+        <div class="box-label">Istilah-Istilah Sesorah</div>
+        <ul>
+          <li><strong>Sesorah</strong> = pidato umum dalam Bahasa Jawa</li>
+          <li><strong>Sambutan</strong> = pidato singkat resmi mewakili pihak tertentu</li>
+          <li><strong>Tanggap wacana</strong> = sesorah sebagai tanggapan dalam acara adat Jawa</li>
+          <li><strong>Pranatacara</strong> = sesorah fungsi MC / pembawa acara (berbeda dari pidato biasa)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="h3">2. Tujuan Sesorah</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-eyebrow">Materi 7</div>
+        <div class="card-title">4 Tujuan Sesorah</div>
+        <ul>
+          <li><strong>Informatif / Ngandhakake</strong> — menyampaikan informasi, berita, atau pengetahuan. Contoh: sesorah pembukaan seminar, upacara</li>
+          <li><strong>Persuasif / Ngajak</strong> — membujuk hadirin agar mau melakukan sesuatu. Contoh: sesorah kampanye, ceramah motivasi</li>
+          <li><strong>Rekreatif / Nglipur</strong> — menghibur hadirin, mencairkan suasana. Contoh: sesorah di perhelatan atau hajatan</li>
+          <li><strong>Seremonial / Ngresmekake</strong> — meresmikan suatu acara. Contoh: sambutan pernikahan, wisuda, ulang tahun perusahaan</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">Contoh Situasi</div>
+        <div class="card-title">Acara & Tujuan Sesorah</div>
+        <div class="tbl-wrap" style="margin:0">
+          <table style="font-size:.8rem">
+            <thead><tr><th>Acara</th><th>Tujuan Sesorah</th></tr></thead>
+            <tbody>
+              <tr><td>Pernikahan</td><td>Seremonial + Rekreatif</td></tr>
+              <tr><td>Tahlil / Lelayu</td><td>Menguatkan + Mendoakan</td></tr>
+              <tr><td>Upacara Bendera</td><td>Informatif + Persuasif</td></tr>
+              <tr><td>Kampanye</td><td>Persuasif</td></tr>
+              <tr><td>Seminar / Workshop</td><td>Informatif</td></tr>
+              <tr><td>HUT / Ulang Tahun</td><td>Seremonial + Rekreatif</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="h3">3. Fungsi Sesorah dalam Suasana Duka</div>
+    <div class="box box-rust">
+      <div class="box-label">Materi 8 — Sesorah ing Kahanan Sungkawa (Duka)</div>
+      <p>Ketika sesorah disampaikan dalam suasana duka (tahlilan, takziah, pemakaman), fungsi sesorah adalah:</p>
+      <ul>
+        <li><strong>Ngaturake bela sungkawa</strong> — menyampaikan turut berduka cita kepada keluarga yang ditinggalkan</li>
+        <li><strong>Ndedonga kanggo sing tilar donya</strong> — mendoakan almarhum/almarhumah agar diterima di sisi Tuhan Yang Maha Esa</li>
+        <li><strong>Nguatake lan nglipur kulawarga</strong> — memberikan kekuatan, penghiburan, dan semangat kepada keluarga yang berduka</li>
+        <li><strong>Ngandharake kenangan becik</strong> — menceritakan kebaikan-kebaikan almarhum/almarhumah semasa hidup sebagai penghormatan</li>
+        <li><strong>Ngelingake akhirat</strong> — mengingatkan semua hadirin tentang hakikat kehidupan dan kematian sebagai kebenaran</li>
+        <li><strong>Matur nuwun</strong> — mengucapkan terima kasih kepada seluruh hadirin yang sudah hadir mendoakan</li>
+      </ul>
+    </div>
+    <div class="example-box">
+      <div class="example-title">Contoh Kalimat Sesorah dalam Suasana Duka</div>
+      <p style="font-size:.86rem;color:var(--cream2);line-height:2;font-style:italic">"Kanthi raos sungkawa ingkang lebet, kula ngaturaken bela sungkawa dhumateng kulawarga ingkang dipuntinggalaken dening almarhum Bapak ___. Mugi-mugi arwahipun tinampi ing ngarsanipun Gusti Allah, lan panjenengan sedaya tansah pinaringan kekuatan lan kasabaran anggenipun nglampahi pacoban menika."</p>
+    </div>
+
+    <div class="h3">4. Metode Sesorah</div>
+    <div class="box box-gold"><div class="box-label">⭐ Materi 9 — 4 Metode Sesorah — WAJIB HAFAL</div><p>Soal tentang metode sesorah sering muncul! Hafalkan 4 metode beserta ciri khas, kelebihan, dan kekurangannya.</p></div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-eyebrow">Metode 1</div>
+        <div class="card-title">Naskah (Membaca Teks Lengkap)</div>
+        <p>Pembicara <strong>membacakan teks sesorah secara lengkap</strong> kata per kata dari naskah tertulis.</p>
+        <div style="margin-top:10px;font-size:.82rem">
+          <p><span class="tag tag-teal">✓ Kelebihan</span> Tidak ada kemungkinan salah kata, materi lengkap, cocok untuk pidato kenegaraan/sangat resmi</p>
+          <p style="margin-top:6px"><span class="tag tag-rust">✗ Kekurangan</span> Kurang natural, kontak mata sedikit, terkesan kaku</p>
+          <p style="margin-top:6px"><span class="tag tag-gold">Cocok untuk</span> Pidato kenegaraan, pelantikan pejabat</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">Metode 2</div>
+        <div class="card-title">Ngapalan (Hafalan / Memoriter)</div>
+        <p>Teks sesorah disiapkan lengkap, kemudian <strong>dihafalkan seluruhnya</strong>. Saat berpidato tidak membawa teks apapun.</p>
+        <div style="margin-top:10px;font-size:.82rem">
+          <p><span class="tag tag-teal">✓ Kelebihan</span> Kontak mata lebih baik dari metode naskah, bisa lebih ekspresif</p>
+          <p style="margin-top:6px"><span class="tag tag-rust">✗ Kekurangan</span> Risiko lupa/blank di tengah, butuh waktu persiapan sangat lama</p>
+          <p style="margin-top:6px"><span class="tag tag-gold">Cocok untuk</span> Lomba pidato, pertunjukan</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">Metode 3 ⭐ Terbaik</div>
+        <div class="card-title">Ekstemporan (Catatan Kerangka)</div>
+        <p>Pembicara hanya membawa <strong>catatan kerangka / poin-poin utama</strong>. Penjelasan tiap poin dikembangkan spontan saat berbicara.</p>
+        <div style="margin-top:10px;font-size:.82rem">
+          <p><span class="tag tag-teal">✓ Kelebihan</span> Natural, fleksibel, kontak mata bagus, tetap terarah — <strong>paling direkomendasikan</strong></p>
+          <p style="margin-top:6px"><span class="tag tag-rust">✗ Kekurangan</span> Butuh penguasaan materi yang cukup baik</p>
+          <p style="margin-top:6px"><span class="tag tag-gold">Cocok untuk</span> Sambutan sehari-hari, rapat, seminar</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">Metode 4</div>
+        <div class="card-title">Impromptu (Dadakan / Spontan)</div>
+        <p>Sesorah dilakukan <strong>tanpa persiapan apapun</strong> — langsung berbicara di tempat saat diminta mendadak tanpa pemberitahuan sebelumnya.</p>
+        <div style="margin-top:10px;font-size:.82rem">
+          <p><span class="tag tag-teal">✓ Kelebihan</span> Paling natural, tulus, dan fleksibel sesuai situasi</p>
+          <p style="margin-top:6px"><span class="tag tag-rust">✗ Kekurangan</span> Butuh jam terbang tinggi, risiko tidak terstruktur atau nglantur</p>
+          <p style="margin-top:6px"><span class="tag tag-gold">Cocok untuk</span> Pembicara berpengalaman, situasi mendadak</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="h3">5. Struktur Sesorah — 6 Bagian Urut</div>
+    <div class="box box-gold"><div class="box-label">⚠️ Materi 6, 11, 12, 14, 15 — KUNCI UTAMA — Paling Banyak Soalnya</div><p>Hafalkan urutan 6 bagian ini dengan benar. Urutan TIDAK BOLEH terbalik — terutama pakurmatan selalu setelah salam pembuka, puji syukur selalu setelah pakurmatan.</p></div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">
+        <div class="step-title">Salam Pambuka — Salam Pembuka</div>
+        <div class="step-desc">Bagian PERTAMA — mengucapkan salam kepada seluruh hadirin. Dipilih sesuai agama/kepercayaan atau menggunakan salam universal.<br><em>"Assalamu'alaikum Warahmatullahi Wabarakatuh."</em><br><em>"Sugeng enjing / siang / sonten / dalu para rawuh ingkang kinurmatan."</em></div>
+      </div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">
+        <div class="step-title">Pakurmatan — Penghormatan kepada Hadirin</div>
+        <div class="step-desc">Menyebutkan dan menghormati tamu penting yang hadir, dari jabatan tertinggi ke bawah, lalu hadirin umum. Menggunakan bahasa krama inggil.<br><em>"Ingkang kinurmatan Bapak Kepala Sekolah ingkang dahat kinurmatan, para Bapak / Ibu Guru ingkang kinurmatan, saha para siswa ingkang kula tresnani."</em><br><strong>Kunci:</strong> Urutan penyebutan dari pejabat tertinggi ke bawah.</div>
+      </div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">
+        <div class="step-title">Puji Syukur — Panuwun dhumateng Gusti Allah</div>
+        <div class="step-desc">Mengucapkan syukur kepada Tuhan Yang Maha Esa atas nikmat sehingga acara dapat terselenggara dengan baik.<br><em>"Kanthi ngaturaken puji syukur dhumateng Gusti Allah ingkang Maha Kuwaos, ingkang sampun paring kanugrahan, satemah kita saged kempal manunggal wonten ing panggenan menika kanthi wilujeng lan shlamet."</em></div>
+      </div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body">
+        <div class="step-title">Wosing Atur — Isi Utama Sesorah</div>
+        <div class="step-desc">Bagian <strong>TERPANJANG dan TERPENTING</strong> dari sesorah. Berisi informasi, ajakan, pesan, atau topik utama yang ingin disampaikan. Semua tujuan sesorah terwujud di sini.<br><strong>Kalimat pembuka wosing atur (Materi 14):</strong><br><em>"Bapak / Ibu ingkang kinurmatan, wonten ing kalodhangan ingkang bingah menika, kula badhe ngaturaken sawetawis bab ingkang wigati tumrap kita sedaya..."</em></div>
+      </div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-body">
+        <div class="step-title">Panutup — Penutup</div>
+        <div class="step-desc">Berisi: kesimpulan dari isi sesorah, permohonan maaf atas segala kekurangan, dan ucapan terima kasih kepada semua pihak.<br><em>"Mekaten ingkang saged kula aturaken. Menawi wonten cewet cewaling atur, tuna dungkaping basa, saha kalepatan sanes-sanesipun, kula nyuwun agunging pangapunten. Mugi-mugi atur kula menika wonten gina lan manfaatipun tumrap kita sedaya."</em></div>
+      </div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-body">
+        <div class="step-title">Salam Panutup — Salam Penutup</div>
+        <div class="step-desc">Menutup sesorah dengan ucapan salam penutup yang sesuai.<br><em>"Wassalamu'alaikum Warahmatullahi Wabarakatuh."</em><br><em>"Nuwun."</em></div>
+      </div></div>
+    </div>
+
+    <div class="h3">6. Kesesuaian Sesorah dengan Situasi</div>
+    <div class="box box-plum">
+      <div class="box-label">Materi 10 — Unggah-Ungguh lan Kahanan</div>
+      <p>Sesorah yang baik harus memperhatikan aspek kesesuaian dengan situasi dan kondisi:</p>
+      <ul>
+        <li><strong>Unggah-ungguh basa</strong> — pilihan tingkat bahasa (ngoko/madya/krama/krama inggil) harus sesuai dengan lawan bicara dan situasi</li>
+        <li><strong>Suasana acara</strong> — sesorah pernikahan (senang, anggun) ≠ sesorah tahlil (khidmat, menyentuh hati)</li>
+        <li><strong>Hadirin / Audiens</strong> — bahasa disesuaikan: anak muda vs orang tua vs pejabat vs masyarakat umum</li>
+        <li><strong>Durasi</strong> — lama sesorah disesuaikan jenis acara: sambutan singkat 3–5 menit vs ceramah 30 menit</li>
+        <li><strong>Tema dan tujuan acara</strong> — isi sesorah harus relevan dan mendukung tujuan acara yang berlangsung</li>
+      </ul>
+    </div>
+
+    <div class="h3">7. Tema Sesorah</div>
+    <div class="card">
+      <div class="card-eyebrow">Materi 13</div>
+      <div class="card-title">Cara Menentukan Tema Sesorah</div>
+      <p><strong>Tema sesorah</strong> = pokok pikiran / gagasan utama yang mendasari seluruh isi sesorah tersebut.</p>
+      <div class="box box-teal" style="margin-top:12px">
+        <div class="box-label">Tips Menentukan Tema dari Teks Sesorah</div>
+        <ul>
+          <li>Baca bagian <strong>wosing atur</strong> (isi) sesorah dengan seksama dan teliti</li>
+          <li>Cari kata kunci atau topik yang paling dominan / paling sering dibahas di dalamnya</li>
+          <li>Tema bersifat <strong>umum dan menyeluruh</strong> — mencakup seluruh isi sesorah, bukan hanya satu bagian</li>
+          <li>Rumuskan dalam satu frasa singkat yang mewakili keseluruhan isi</li>
+        </ul>
+      </div>
+      <p style="font-size:.84rem;color:var(--text2);margin-top:10px"><strong style="color:var(--gold2)">Contoh:</strong> Sesorah membahas kebersihan lingkungan, bahaya sampah, ajakan gotong royong bersih-bersih → Tema: <em>"Kebersihan Lingkungan Sekolah"</em></p>
+    </div>
+  </div>
+</div>
+
+<!-- NOVEL -->
+<div id="novel" class="sec">
+  <div class="sec-page-hero" data-kanji="ꦤ">
+    <div class="sec-eyebrow">Materi 16–19 <span>Topik 3</span></div>
+    <h2>Novel Jawa</h2>
+    <p>Roman / novel berbahasa Jawa — pengertian, ciri-ciri, 3 jenis klasifikasi, struktur alur 5 tahap, unsur intrinsik (latar, watak tokoh), dan pitutur luhur.</p>
+  </div>
+  <div class="content">
+
+    <div class="h3">1. Pengertian Novel</div>
+    <div class="card">
+      <div class="card-eyebrow">Materi 16</div>
+      <div class="card-title">Apa itu Novel Jawa?</div>
+      <p><strong>Novel</strong> yaiku karya sastra awujud gancaran (prosa) kang kandel, ngandharake urip lan panguripane paraga (tokoh) ing sawijining kahanan kanthi alur kang kompleks lan berlapis.</p>
+      <p style="margin-top:8px">Novel Bahasa Jawa sering disebut juga <strong>roman</strong>. Ini adalah karya sastra fiksi prosa panjang yang mengisahkan kehidupan tokoh secara komprehensif dan mendalam.</p>
+      <div class="tbl-wrap" style="margin-top:14px">
+        <table>
+          <thead><tr><th>Aspek</th><th>Novel / Roman</th><th>Cerkak (Cerpen Jawa)</th></tr></thead>
+          <tbody>
+            <tr><td>Panjang</td><td>Sangat panjang (min. 40.000 kata, ratusan halaman)</td><td>Pendek (5–25 halaman)</td></tr>
+            <tr><td>Tokoh</td><td>Banyak, dikembangkan sangat mendalam</td><td>Sedikit, tidak terlalu dalam</td></tr>
+            <tr><td>Konflik</td><td>Berlapis, kompleks, banyak sub-konflik</td><td>Tunggal / sederhana</td></tr>
+            <tr><td>Latar</td><td>Bervariasi — banyak tempat dan waktu</td><td>Terbatas 1–2 latar</td></tr>
+            <tr><td>Alur</td><td>Bercabang-cabang, ada subplot</td><td>Satu alur lurus</td></tr>
+            <tr><td>Waktu Baca</td><td>Berhari-hari / berminggu-minggu</td><td>Sekali duduk (30–60 menit)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="h3">2. Ciri-Ciri Novel</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-eyebrow">Ciri Formal / Bentuk</div>
+        <div class="card-title">Wujud Fisik Novel</div>
+        <ul>
+          <li>Berbentuk <strong>prosa (gancaran)</strong> — narasi, bukan puisi atau tembang</li>
+          <li>Sangat panjang, umumnya terdiri dari bab-bab atau bagian-bagian</li>
+          <li>Diterbitkan dalam bentuk buku tersendiri</li>
+          <li>Minimal 40.000 kata (biasanya 100–500+ halaman)</li>
+          <li>Memiliki judul yang mewakili isi cerita atau tokoh utama</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">Ciri Isi / Kandungan</div>
+        <div class="card-title">Kandungan dalam Novel</div>
+        <ul>
+          <li>Mengisahkan kehidupan tokoh secara <strong>lengkap dan sangat mendalam</strong></li>
+          <li>Ada konflik yang <strong>kompleks dan berlapis-lapis</strong></li>
+          <li>Memiliki banyak tokoh dengan peran dan kepribadian berbeda-beda</li>
+          <li>Latar (tempat, waktu, suasana) bervariasi dan digambarkan rinci</li>
+          <li>Ada <strong>perubahan nasib</strong> signifikan pada tokoh utama</li>
+          <li>Mengandung nilai-nilai kehidupan (<em>pitutur luhur</em>) yang disampaikan lewat cerita</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="h3">3. Jenis-Jenis Novel Jawa</div>
+    <div class="box box-gold"><div class="box-label">Materi 17 — 3 Cara Klasifikasi Novel</div><p>Novel Jawa diklasifikasikan berdasarkan tiga kriteria yang berbeda — masing-masing menghasilkan jenis yang berbeda pula.</p></div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-eyebrow">Berdasarkan Kedadeyan (Waktu)</div>
+        <div class="card-title">Waktu Penulisan</div>
+        <ul>
+          <li><strong>Novel Lawas / Klasik</strong><br><small style="color:var(--text3);line-height:1.8;display:block;margin-top:4px">Ditulis sebelum kemerdekaan (sebelum 1945). Menggunakan bahasa Jawa klasik/kawi. Tema: adat istiadat, kerajaan, perjuangan. Contoh: <em>Serat Centhini</em></small></li>
+          <li style="margin-top:12px"><strong>Novel Anyar / Modern</strong><br><small style="color:var(--text3);line-height:1.8;display:block;margin-top:4px">Ditulis setelah kemerdekaan (1945 ke atas). Bahasa Jawa lebih modern dan kontemporer. Tema lebih beragam mengikuti zaman</small></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">Berdasarkan Genre</div>
+        <div class="card-title">Aliran Cerita</div>
+        <ul>
+          <li><strong>Romantis</strong> — kisah percintaan/asmara tokoh</li>
+          <li><strong>Detektif / Misteri</strong> — pemecahan kasus atau teka-teki</li>
+          <li><strong>Sejarah</strong> — berlatar belakang sejarah nyata</li>
+          <li><strong>Horor / Gaib</strong> — unsur seram, dunia gaib</li>
+          <li><strong>Petualangan</strong> — perjalanan panjang dan rintangan</li>
+          <li><strong>Religius</strong> — nilai keagamaan yang sangat kuat</li>
+          <li><strong>Komedi</strong> — cerita ringan menghibur</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">Berdasarkan Isi / Paragane</div>
+        <div class="card-title">Tema / Isi Utama</div>
+        <ul>
+          <li><strong>Novel Sosial</strong> — masalah kemasyarakatan, kemiskinan, ketidakadilan</li>
+          <li><strong>Novel Psikologis</strong> — kondisi batin/jiwa tokoh secara mendalam</li>
+          <li><strong>Novel Pendidikan</strong> — nilai-nilai belajar, perjuangan meraih pendidikan</li>
+          <li><strong>Novel Metropolis</strong> — kehidupan di kota besar, modernitas</li>
+          <li><strong>Novel Keluarga</strong> — dinamika kehidupan dalam keluarga</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="h3">4. Struktur Novel (Alur Cerita)</div>
+    <div class="box box-teal"><div class="box-label">Materi 18 — 5 Tahap Struktur Alur Novel</div><p>Setiap novel yang baik memiliki alur yang tersusun secara runtut melalui 5 tahap berikut:</p></div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body">
+        <div class="step-title">Orientasi / Eksposisi — Pengenalan</div>
+        <div class="step-desc"><strong>Memperkenalkan</strong> tokoh-tokoh utama, latar tempat dan waktu, serta situasi awal sebelum konflik muncul. Pembaca diajak mengenal "dunia" dalam novel. Biasanya terasa santai dan tenang.</div>
+      </div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body">
+        <div class="step-title">Komplikasi / Konflik — Munculnya Masalah</div>
+        <div class="step-desc"><strong>Konflik pertama mulai muncul</strong>, ketegangan mulai terbangun. Tokoh utama mulai menghadapi rintangan, hambatan, atau permasalahan yang menguji dirinya. Mulai ada yang tidak berjalan lancar.</div>
+      </div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body">
+        <div class="step-title">Klimaks — Puncak Konflik</div>
+        <div class="step-desc"><strong>Titik ketegangan tertinggi</strong> — permasalahan paling gawat terjadi di sini. Pembaca biasanya paling tegang dan penasaran di bagian ini. Keputusan-keputusan penting dibuat oleh tokoh utama.</div>
+      </div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body">
+        <div class="step-title">Antiklimaks / Resolusi — Penyelesaian</div>
+        <div class="step-desc"><strong>Ketegangan mulai mereda</strong> setelah klimaks. Tokoh menemukan jalan keluar atau cara menghadapi permasalahan. Situasi mulai membaik atau setidaknya lebih jelas.</div>
+      </div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-body">
+        <div class="step-title">Konklusi / Koda — Akhir Cerita</div>
+        <div class="step-desc"><strong>Penyelesaian akhir</strong> — semua konflik tuntas, nasib setiap tokoh dijelaskan, pesan moral / pitutur luhur ditegaskan. Bisa berakhir bahagia (<em>happy ending</em>) atau sedih (<em>sad ending</em>), tergantung pengarang.</div>
+      </div></div>
+    </div>
+
+    <div class="h3">5. Unsur Intrinsik Novel</div>
+    <div class="box box-plum"><div class="box-label">Materi 19 — Latar, Watak Tokoh, dan Pitutur Luhur</div><p>Soal tentang unsur intrinsik fokus pada: latar (waktu, tempat, suasana), watak tokoh, dan pitutur luhur. Pastikan kamu bisa menentukan ketiganya dari kutipan novel.</p></div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-eyebrow">Latar / Setting</div>
+        <div class="card-title">3 Macam Latar</div>
+        <ul>
+          <li><strong>Latar Waktu</strong> — kapan cerita berlangsung.<br><small style="color:var(--text3)">Tanda: <em>"nalika srengenge durung metu"</em> (subuh), <em>"ing jaman penjajahan"</em>, <em>"wayah esuk"</em></small></li>
+          <li style="margin-top:8px"><strong>Latar Tempat</strong> — di mana cerita terjadi.<br><small style="color:var(--text3)">Tanda: nama tempat atau deskripsi lokasi: <em>"ing omahe Pak Carik"</em>, <em>"ing pinggir sawah"</em>, <em>"ing kutha Surakarta"</em></small></li>
+          <li style="margin-top:8px"><strong>Latar Suasana</strong> — suasana yang tercipta: bungah (gembira), sedhih (sedih), tegang, romantis, mencekam. Biasanya digambarkan lewat cuaca atau kondisi sekitar.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">Paraga / Tokoh</div>
+        <div class="card-title">Watak / Karakter Tokoh</div>
+        <ul>
+          <li><strong>Protagonis</strong> — tokoh utama berwatak baik, yang berjuang dan ingin berhasil</li>
+          <li><strong>Antagonis</strong> — tokoh berwatak jahat, menjadi lawan / penghalang protagonis</li>
+          <li><strong>Tritagonis</strong> — tokoh penengah, bisa membantu protagonis atau antagonis</li>
+        </ul>
+        <div style="margin-top:12px;font-size:.82rem">
+          <strong style="color:var(--gold2)">Cara Menentukan Watak Tokoh:</strong>
+          <ul style="margin-top:6px">
+            <li>Dari <em>ucapan / dialog tokoh sendiri</em></li>
+            <li>Dari <em>tindakan / perilaku</em> tokoh dalam cerita</li>
+            <li>Dari <em>ucapan tokoh lain</em> tentang tokoh tersebut</li>
+            <li>Dari <em>deskripsi pengarang</em> secara eksplisit</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="box box-rust" style="margin-top:16px">
+      <div class="box-label">Pitutur Luhur — Amanat / Pesan Moral Novel</div>
+      <p><strong>Pitutur luhur</strong> = amanat / pesan moral yang ingin disampaikan pengarang kepada pembaca melalui cerita novel. Ini berbeda dari tema (topik) dan latar.</p>
+      <ul>
+        <li><strong>Cara menemukan pitutur luhur:</strong> Lihat "akibat" dari setiap tindakan tokoh. Apa yang terjadi pada tokoh jujur? Pada tokoh yang berbuat jahat? Apa hikmah yang bisa diambil dari keseluruhan cerita?</li>
+        <li><strong>Tema pitutur luhur yang umum:</strong> kejujuran, kerja keras, kesetiaan, kasih sayang, berbakti kepada orang tua, persaudaraan, sabar menghadapi cobaan, tidak sombong</li>
+      </ul>
+      <p style="margin-top:10px"><strong>Contoh pitutur luhur klasik Jawa:</strong></p>
+      <ul>
+        <li><em>"Sapa nandur bakal ngundhuh"</em> — siapa yang menanam akan menuai hasilnya → pesan: kerja keras pasti berbuah hasil</li>
+        <li><em>"Becik ketitik, ala ketara"</em> — kebaikan akan terlihat, kejahatan akan tampak → pesan: kebenaran pasti akan terungkap</li>
+        <li><em>"Jer basuki mawa beya"</em> — keberhasilan membutuhkan pengorbanan → pesan: tidak ada kesuksesan tanpa usaha</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- AKSARA JAWA -->
+<div id="aksara" class="sec">
+  <div class="sec-page-hero" data-kanji="ꦲ">
+    <div class="sec-eyebrow">Materi 20–23 <span>Topik 4</span></div>
+    <h2>Aksara Jawa</h2>
+    <p>Membaca dan menulis Aksara Jawa — 20 aksara dasar (carakan), pasangan, sandhangan vokal & konsonan lengkap, angka Jawa, dan transliterasi Latin ↔ Aksara Jawa.</p>
+  </div>
+  <div class="content">
+
+    <div class="h3">1. Aksara Jawa Nglegena — 20 Aksara Dasar</div>
+    <div class="box box-gold"><div class="box-label">Materi 20–23 — Fondasi Utama yang Harus Hafal</div><p>Ha-Na-Ca-Ra-Ka adalah 20 aksara dasar Jawa yang disebut <strong>carakan</strong>. Semua aksara dasar mengandung vokal inherent /a/ — artinya otomatis berbunyi dengan vokal "a" jika tidak ada sandhangan.</p></div>
+    <div class="aksara-showcase">
+      <span class="jv">ꦲ ꦤ ꦕ ꦫ ꦏ</span><p>Ha · Na · Ca · Ra · Ka</p>
+      <span class="jv">ꦢ ꦠ ꦱ ꦮ ꦭ</span><p>Da · Ta · Sa · Wa · La</p>
+      <span class="jv">ꦥ ꦣ ꦗ ꦪ ꦚ</span><p>Pa · Dha · Ja · Ya · Nya</p>
+      <span class="jv">ꦩ ꦒ ꦧ ꦛ ꦔ</span><p>Ma · Ga · Ba · Tha · Nga</p>
+    </div>
+    <div class="aksara-grid">
+      <div class="aksara-cell"><span class="jv">ꦲ</span><small>ha</small></div>
+      <div class="aksara-cell"><span class="jv">ꦤ</span><small>na</small></div>
+      <div class="aksara-cell"><span class="jv">ꦕ</span><small>ca</small></div>
+      <div class="aksara-cell"><span class="jv">ꦫ</span><small>ra</small></div>
+      <div class="aksara-cell"><span class="jv">ꦏ</span><small>ka</small></div>
+      <div class="aksara-cell"><span class="jv">ꦢ</span><small>da</small></div>
+      <div class="aksara-cell"><span class="jv">ꦠ</span><small>ta</small></div>
+      <div class="aksara-cell"><span class="jv">ꦱ</span><small>sa</small></div>
+      <div class="aksara-cell"><span class="jv">ꦮ</span><small>wa</small></div>
+      <div class="aksara-cell"><span class="jv">ꦭ</span><small>la</small></div>
+      <div class="aksara-cell"><span class="jv">ꦥ</span><small>pa</small></div>
+      <div class="aksara-cell"><span class="jv">ꦣ</span><small>dha</small></div>
+      <div class="aksara-cell"><span class="jv">ꦗ</span><small>ja</small></div>
+      <div class="aksara-cell"><span class="jv">ꦪ</span><small>ya</small></div>
+      <div class="aksara-cell"><span class="jv">ꦚ</span><small>nya</small></div>
+      <div class="aksara-cell"><span class="jv">ꦩ</span><small>ma</small></div>
+      <div class="aksara-cell"><span class="jv">ꦒ</span><small>ga</small></div>
+      <div class="aksara-cell"><span class="jv">ꦧ</span><small>ba</small></div>
+      <div class="aksara-cell"><span class="jv">ꦛ</span><small>tha</small></div>
+      <div class="aksara-cell"><span class="jv">ꦔ</span><small>nga</small></div>
+    </div>
+
+    <div class="h3">2. Sandhangan Aksara Jawa</div>
+    <div class="box box-teal"><div class="box-label">Materi 22 — Tanda Pengubah Bunyi</div><p>Sandhangan adalah tanda yang ditambahkan pada aksara dasar untuk mengubah bunyi vokal atau menambahkan bunyi konsonan tertentu. Tanpa sandhangan, semua aksara dasar berbunyi /a/.</p></div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-eyebrow">Sandhangan Swara — Mengubah Vokal</div>
+        <div class="card-title">5 Sandhangan Vokal</div>
+        <div class="tbl-wrap" style="margin:8px 0 0">
+          <table style="font-size:.82rem">
+            <thead><tr><th>Nama</th><th>Bunyi</th><th>Posisi</th><th>Contoh</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Wulu</strong> ◌ꦶ</td><td>/i/</td><td>di atas aksara</td><td><span class="jv" style="font-size:1.2rem">ꦱꦶ</span> = si</td></tr>
+              <tr><td><strong>Suku</strong> ◌ꦸ</td><td>/u/</td><td>di bawah aksara</td><td><span class="jv" style="font-size:1.2rem">ꦱꦸ</span> = su</td></tr>
+              <tr><td><strong>Pepet</strong> ◌ꦼ</td><td>/ê/ (e mati)</td><td>di atas aksara</td><td><span class="jv" style="font-size:1.2rem">ꦱꦼ</span> = sê</td></tr>
+              <tr><td><strong>Taling</strong> ◌ꦺ</td><td>/é/ (e terang)</td><td>di DEPAN aksara</td><td><span class="jv" style="font-size:1.2rem">ꦺꦱ</span> = sé</td></tr>
+              <tr><td><strong>Taling tarung</strong> ◌ꦺꦴ</td><td>/o/</td><td>depan + belakang</td><td><span class="jv" style="font-size:1.2rem">ꦺꦱꦴ</span> = so</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="box box-gold" style="margin-top:12px;padding:10px 14px">
+          <div class="box-label" style="margin-bottom:4px">Hafalan Cepat</div>
+          <p style="font-size:.8rem">Wulu=i · Suku=u · Pepet=ê · Taling=é · Taling tarung=o</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">Sandhangan Panyigeg — Menutup Suku Kata</div>
+        <div class="card-title">Konsonan Penutup</div>
+        <div class="tbl-wrap" style="margin:8px 0 0">
+          <table style="font-size:.82rem">
+            <thead><tr><th>Nama</th><th>Bunyi</th><th>Fungsi</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Wignyan</strong> ◌ꦃ</td><td>/h/</td><td>Konsonan akhir /h/ — diletakkan di atas-belakang</td></tr>
+              <tr><td><strong>Layar</strong> ◌ꦂ</td><td>/r/</td><td>Konsonan akhir /r/ — diletakkan di atas aksara</td></tr>
+              <tr><td><strong>Cecak</strong> ◌ꦁ</td><td>/ng/</td><td>Konsonan akhir /ng/ — titik kecil di atas</td></tr>
+              <tr><td><strong>Pangkon</strong> ◌꧀</td><td>mati</td><td>Mematikan vokal /a/ secara umum (alternatif pasangan)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="margin-top:14px">
+          <div class="card-eyebrow">Sandhangan Wyanjana — Konsonan Tambahan</div>
+          <div class="tbl-wrap" style="margin:6px 0 0">
+            <table style="font-size:.82rem">
+              <thead><tr><th>Nama</th><th>Fungsi & Contoh</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Cakra ◌ꦾ</strong></td><td>Tambah /r/ setelah konsonan. Contoh: <span class="jv">ꦥꦾ</span> = pra</td></tr>
+                <tr><td><strong>Pengkal ◌ꦿ</strong></td><td>Tambah /y/ setelah konsonan. Contoh: <span class="jv">ꦱꦿ</span> = sya</td></tr>
+                <tr><td><strong>Keret</strong></td><td>Konsonan + rê (gabungan cakra + pepet)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="h3">3. Pasangan Aksara Jawa</div>
+    <div class="box box-rust">
+      <div class="box-label">Materi 21 & 23 — Pasangan</div>
+      <p><strong>Pasangan</strong> adalah bentuk khusus setiap aksara yang digunakan untuk <strong>mematikan vokal /a/ pada aksara sebelumnya</strong>, sehingga menghasilkan gugus konsonan (kluster) tanpa vokal di antaranya.</p>
+      <p style="margin-top:8px"><strong>Kapan digunakan?</strong> Saat ada dua konsonan berurutan tanpa vokal di antara keduanya. Contoh kata <em>"prabawa"</em>: "pr" adalah gugus konsonan → aksara "pa" vokalnya harus dimatikan dengan pasangan ra (= cakra ◌ꦾ).</p>
+      <p style="margin-top:8px"><strong>Letak pasangan:</strong> biasanya di bawah aksara yang vokalnya ingin dimatikan, atau menggunakan sandhangan khusus (seperti cakra untuk ra, pengkal untuk ya).</p>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Aksara</th><th>Latin</th><th>Catatan Pasangan</th><th>Aksara</th><th>Latin</th><th>Catatan Pasangan</th></tr></thead>
+        <tbody>
+          <tr><td class="jv" style="font-size:1.3rem">ꦏ</td><td>ka</td><td>Pasangan ka di bawah</td><td class="jv" style="font-size:1.3rem">ꦤ</td><td>na</td><td>Pasangan na di bawah</td></tr>
+          <tr><td class="jv" style="font-size:1.3rem">ꦱ</td><td>sa</td><td>Pasangan sa di bawah</td><td class="jv" style="font-size:1.3rem">ꦫ</td><td>ra</td><td>Pasangan ra = Cakra ◌ꦾ</td></tr>
+          <tr><td class="jv" style="font-size:1.3rem">ꦪ</td><td>ya</td><td>Pasangan ya = Pengkal ◌ꦿ</td><td class="jv" style="font-size:1.3rem">ꦮ</td><td>wa</td><td>Pasangan wa di bawah</td></tr>
+          <tr><td class="jv" style="font-size:1.3rem">ꦠ</td><td>ta</td><td>Pasangan ta di bawah</td><td class="jv" style="font-size:1.3rem">ꦭ</td><td>la</td><td>Pasangan la di bawah</td></tr>
+          <tr><td class="jv" style="font-size:1.3rem">ꦩ</td><td>ma</td><td>Pasangan ma di bawah</td><td class="jv" style="font-size:1.3rem">ꦒ</td><td>ga</td><td>Pasangan ga di bawah</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="h3">4. Angka Jawa</div>
+    <div class="box box-plum"><div class="box-label">Materi 20 — Angka Jawa 0–9</div><p>Angka Jawa memiliki simbol khusus untuk angka 0 sampai 9. Dalam penulisan, angka Jawa diapit oleh tanda <strong class="jv">꧇ ... ꧇</strong> agar tidak tertukar dengan aksara huruf biasa.</p></div>
+    <div class="aksara-grid" style="grid-template-columns:repeat(5,1fr)">
+      <div class="aksara-cell"><span class="jv" style="font-size:2rem">꧐</span><small>0 — nol</small></div>
+      <div class="aksara-cell"><span class="jv" style="font-size:2rem">꧑</span><small>1 — siji</small></div>
+      <div class="aksara-cell"><span class="jv" style="font-size:2rem">꧒</span><small>2 — loro</small></div>
+      <div class="aksara-cell"><span class="jv" style="font-size:2rem">꧓</span><small>3 — telu</small></div>
+      <div class="aksara-cell"><span class="jv" style="font-size:2rem">꧔</span><small>4 — papat</small></div>
+      <div class="aksara-cell"><span class="jv" style="font-size:2rem">꧕</span><small>5 — lima</small></div>
+      <div class="aksara-cell"><span class="jv" style="font-size:2rem">꧖</span><small>6 — enem</small></div>
+      <div class="aksara-cell"><span class="jv" style="font-size:2rem">꧗</span><small>7 — pitu</small></div>
+      <div class="aksara-cell"><span class="jv" style="font-size:2rem">꧘</span><small>8 — wolu</small></div>
+      <div class="aksara-cell"><span class="jv" style="font-size:2rem">꧙</span><small>9 — sanga</small></div>
+    </div>
+    <div class="tbl-wrap" style="margin-top:16px">
+      <table>
+        <thead><tr><th>Angka Arab</th><th>Angka Jawa</th><th>Dibaca dalam Bahasa Jawa</th></tr></thead>
+        <tbody>
+          <tr><td>17</td><td class="jv" style="font-size:1.3rem">꧇꧑꧗꧇</td><td>pitulas</td></tr>
+          <tr><td>25</td><td class="jv" style="font-size:1.3rem">꧇꧒꧕꧇</td><td>selangkung</td></tr>
+          <tr><td>100</td><td class="jv" style="font-size:1.3rem">꧇꧑꧐꧐꧇</td><td>satus</td></tr>
+          <tr><td>1945</td><td class="jv" style="font-size:1.3rem">꧇꧑꧙꧔꧕꧇</td><td>sewu sangang atus sekawan likur</td></tr>
+          <tr><td>2025</td><td class="jv" style="font-size:1.3rem">꧇꧒꧐꧒꧕꧇</td><td>loro ewu selangkung</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="h3">5. Transliterasi Latin → Aksara Jawa</div>
+    <div class="box box-gold">
+      <div class="box-label">Materi 21 — Langkah-Langkah Transliterasi</div>
+      <ol style="padding-left:18px;line-height:2.3">
+        <li>Pisahkan kata menjadi suku kata: <em>"sekolah" → se-ko-lah</em></li>
+        <li>Tulis aksara dasar untuk setiap suku kata</li>
+        <li>Jika vokalnya bukan /a/, tambahkan sandhangan yang tepat</li>
+        <li>Jika ada konsonan penutup (h, r, ng), tambahkan panyigeg (wignyan, layar, cecak)</li>
+        <li>Jika ada gugus konsonan, gunakan pasangan yang sesuai</li>
+        <li>Perhatikan tanda baca: titik = <span class="jv">꧈</span> , koma/jeda = <span class="jv">꧌</span></li>
+      </ol>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Latin</th><th>Aksara Jawa</th><th>Analisis Penulisan</th></tr></thead>
+        <tbody>
+          <tr><td><strong>aku</strong></td><td class="jv" style="font-size:1.4rem">ꦲꦏꦸ</td><td>ha + ka+suku(u) → a-ku</td></tr>
+          <tr><td><strong>ibu</strong></td><td class="jv" style="font-size:1.4rem">ꦲꦶꦧꦸ</td><td>ha+wulu(i) + ba+suku(u) → i-bu</td></tr>
+          <tr><td><strong>buku</strong></td><td class="jv" style="font-size:1.4rem">ꦧꦸꦏꦸ</td><td>ba+suku + ka+suku → bu-ku</td></tr>
+          <tr><td><strong>guru</strong></td><td class="jv" style="font-size:1.4rem">ꦒꦸꦫꦸ</td><td>ga+suku + ra+suku → gu-ru</td></tr>
+          <tr><td><strong>mangan</strong></td><td class="jv" style="font-size:1.4rem">ꦩꦔꦤ꧀</td><td>ma + nga + na+pangkon → ma-nga-n</td></tr>
+          <tr><td><strong>sinau</strong></td><td class="jv" style="font-size:1.4rem">ꦱꦶꦤꦻ</td><td>sa+wulu(i) + na + vokal au → si-nau</td></tr>
+          <tr><td><strong>sekolah</strong></td><td class="jv" style="font-size:1.4rem">ꦱꦼꦏꦺꦴꦭꦃ</td><td>sa+pepet + ka + taling-tarung(o)+la + wignyan(h)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="h3">6. Cara Membaca & Melengkapi Teks Aksara Jawa</div>
+    <div class="box box-plum">
+      <div class="box-label">Materi 22 & 23 — Tips Soal Aksara Jawa</div>
+      <p><strong>Untuk soal membaca kata dalam aksara Jawa:</strong></p>
+      <ul>
+        <li>Baca aksara satu per satu dari kiri ke kanan</li>
+        <li>Setiap aksara dasar = bunyi konsonan + vokal /a/ (kecuali ada sandhangan)</li>
+        <li>Perhatikan sandhangan di atas/bawah/depan/belakang aksara</li>
+        <li>Perhatikan panyigeg (wignyan/layar/cecak) di akhir suku kata</li>
+      </ul>
+      <p style="margin-top:10px"><strong>Untuk soal melengkapi aksara Jawa yang kosong:</strong></p>
+      <ul>
+        <li>Baca aksara di sekitar bagian kosong untuk memahami konteks kalimat</li>
+        <li>Terjemahkan bagian yang sudah ada ke huruf Latin</li>
+        <li>Tentukan kata/aksara apa yang logis untuk mengisi kekosongan tersebut</li>
+        <li>Pilih opsi yang penulisan aksara Jawanya paling benar (vokal, pasangan, sandhangan tepat)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- LATIHAN -->
+<div id="latihan" class="sec">
+  <div class="sec-page-hero" data-kanji="ꦭ">
+    <div class="sec-eyebrow">Evaluasi <span>Latihan Interaktif</span></div>
+    <h2>Latihan Soal</h2>
+    <p>Klik pilihan untuk mengecek jawaban secara langsung. Hijau = benar, merah = salah. Penjelasan muncul otomatis setelah menjawab.</p>
+  </div>
+  <div class="content">
+    <div class="score-banner">
+      <div class="score-num" id="scoreNum">0</div>
+      <div style="flex:1">
+        <div style="font-weight:500;color:var(--cream2);font-size:.9rem;margin-bottom:2px">Skor Latihan</div>
+        <div style="font-size:.8rem;color:var(--text2)">Jawab soal di bawah untuk update skor otomatis</div>
+        <div class="score-bar"><div class="score-fill" id="scoreFill" style="width:0%"></div></div>
+      </div>
+      <div style="font-size:.8rem;color:var(--text3)"><span id="scoreDetail">0/12</span> benar</div>
+    </div>
+    <div class="quiz-wrap">
+
+      <div class="quiz-item">
+        <div class="quiz-q"><span class="quiz-q-num">1.</span> Pariwara ing basa Jawa tegese...</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="ans(this,'wrong','q1')">A. Pidato resmi ing adicara tartamtu</button>
+          <button class="quiz-opt" onclick="ans(this,'correct','q1')">B. Wacana kang ngandharake informasi barang/jasa supaya wong gelem tuku</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q1')">C. Karya sastra awujud gancaran kang kandel</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q1')">D. Tembang kang nggunakake basa krama inggil</button>
+        </div>
+        <div class="quiz-explain" id="exp-q1"><strong>Jawaban: B.</strong> Pariwara = iklan dalam Bahasa Jawa. Tujuan utamanya menawarkan produk/jasa agar orang tertarik. Beda dengan sesorah (pidato) atau novel (karya sastra prosa panjang).</div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q"><span class="quiz-q-num">2.</span> Pariwara kang ora nduweni tujuan golek bathi lan isi-e babagan kepentingan umum diarani pariwara...</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="ans(this,'wrong','q2')">A. Komersial</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q2')">B. Persuasif</button>
+          <button class="quiz-opt" onclick="ans(this,'correct','q2')">C. Nonkomersial / Layanan Masyarakat</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q2')">D. Informatif</button>
+        </div>
+        <div class="quiz-explain" id="exp-q2"><strong>Jawaban: C.</strong> Pariwara nonkomersial = iklan layanan masyarakat. Contoh: iklan hemat listrik, bahaya rokok, KB. Tidak mencari keuntungan ekonomi — tujuannya untuk kepentingan publik.</div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q"><span class="quiz-q-num">3.</span> Urutan struktur sesorah kang BENER yaiku...</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="ans(this,'wrong','q3')">A. Wosing atur → Pakurmatan → Salam pambuka → Puji syukur → Panutup → Salam panutup</button>
+          <button class="quiz-opt" onclick="ans(this,'correct','q3')">B. Salam pambuka → Pakurmatan → Puji syukur → Wosing atur → Panutup → Salam panutup</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q3')">C. Pakurmatan → Salam pambuka → Puji syukur → Panutup → Wosing atur → Salam panutup</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q3')">D. Salam pambuka → Puji syukur → Pakurmatan → Wosing atur → Panutup → Salam panutup</button>
+        </div>
+        <div class="quiz-explain" id="exp-q3"><strong>Jawaban: B.</strong> Urutan baku: ① Salam pambuka → ② Pakurmatan → ③ Puji syukur → ④ Wosing atur → ⑤ Panutup → ⑥ Salam panutup. Pakurmatan SELALU setelah salam, puji syukur SELALU setelah pakurmatan.</div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q"><span class="quiz-q-num">4.</span> Metode sesorah kang paling disaranake kanggo sesorah sehari-hari amarga natural lan tetep terarah yaiku metode...</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="ans(this,'wrong','q4')">A. Naskah — membaca teks lengkap</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q4')">B. Ngapalan — hafalan seluruh teks</button>
+          <button class="quiz-opt" onclick="ans(this,'correct','q4')">C. Ekstemporan — hanya membawa catatan kerangka/poin</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q4')">D. Impromptu — tanpa persiapan apapun</button>
+        </div>
+        <div class="quiz-explain" id="exp-q4"><strong>Jawaban: C.</strong> Ekstemporan = hanya membawa catatan kerangka/poin utama. Penjelasan dikembangkan spontan. Paling direkomendasikan karena natural, kontak mata baik, dan tetap terarah. Beda dengan impromptu yang benar-benar tanpa persiapan.</div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q"><span class="quiz-q-num">5.</span> Bagian sesorah kang isine pokok pikiran utama lan dadi bagian paling dawa diarani...</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="ans(this,'wrong','q5')">A. Pakurmatan</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q5')">B. Puji syukur</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q5')">C. Panutup</button>
+          <button class="quiz-opt" onclick="ans(this,'correct','q5')">D. Wosing atur</button>
+        </div>
+        <div class="quiz-explain" id="exp-q5"><strong>Jawaban: D.</strong> Wosing atur = isi / pokok sesorah. "Wos" artinya inti/isi, "atur" artinya penyampaian. Ini adalah bagian ke-4 dalam struktur sesorah, sekaligus bagian terpanjang dan terpenting.</div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q"><span class="quiz-q-num">6.</span> Fungsi sesorah nalika ing adicara tahlilan utawa lelayu (duka) yaiku...</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="ans(this,'correct','q6')">A. Ngaturake bela sungkawa lan nguatake kulawarga ingkang dipuntinggalaken</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q6')">B. Ngumumake jadwal acara selanjutnya kepada hadirin</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q6')">C. Ngajak hadirin supaya melu nyanyi lan nglipur diri</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q6')">D. Ngresmekake adicara lan mbuka sesi tanya jawab</button>
+        </div>
+        <div class="quiz-explain" id="exp-q6"><strong>Jawaban: A.</strong> Dalam suasana duka, fungsi sesorah: menyampaikan belasungkawa, mendoakan almarhum/almarhumah, menguatkan keluarga yang ditinggalkan, dan mengingatkan tentang hakikat kematian.</div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q"><span class="quiz-q-num">7.</span> Novel Jawa kang ditulis sadurunge kamardikan lan nggunakake basa Jawa kuna/klasik diarani novel...</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="ans(this,'correct','q7')">A. Lawas / Klasik</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q7')">B. Anyar / Modern</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q7')">C. Romantis</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q7')">D. Metropolis</button>
+        </div>
+        <div class="quiz-explain" id="exp-q7"><strong>Jawaban: A.</strong> Novel lawas/klasik = ditulis sebelum kemerdekaan (sebelum 1945), menggunakan bahasa Jawa kuno/kawi. Contoh: Serat Centhini. Ini adalah klasifikasi berdasarkan <em>kedadeyan</em> (waktu penulisan).</div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q"><span class="quiz-q-num">8.</span> Urutan struktur alur novel kang BENER yaiku...</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="ans(this,'wrong','q8')">A. Klimaks → Orientasi → Komplikasi → Antiklimaks → Konklusi</button>
+          <button class="quiz-opt" onclick="ans(this,'correct','q8')">B. Orientasi → Komplikasi → Klimaks → Antiklimaks → Konklusi</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q8')">C. Orientasi → Klimaks → Komplikasi → Konklusi → Antiklimaks</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q8')">D. Komplikasi → Orientasi → Klimaks → Antiklimaks → Konklusi</button>
+        </div>
+        <div class="quiz-explain" id="exp-q8"><strong>Jawaban: B.</strong> Alur novel: (1) Orientasi/pengenalan → (2) Komplikasi/konflik muncul → (3) Klimaks/puncak konflik → (4) Antiklimaks/mereda → (5) Konklusi/selesai. Logis: kenalan dulu → ada masalah → masalah memuncak → mulai selesai → selesai.</div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q"><span class="quiz-q-num">9.</span> Pitutur luhur ing novel tegese...</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="ans(this,'wrong','q9')">A. Jeneng lan profil paraga utama ing novel</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q9')">B. Latar wektu lan panggonan ing novel</button>
+          <button class="quiz-opt" onclick="ans(this,'correct','q9')">C. Amanat utawa pesen moral kang kinandhut ing novel</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q9')">D. Konflik utama kang diadhepi paraga protagonis</button>
+        </div>
+        <div class="quiz-explain" id="exp-q9"><strong>Jawaban: C.</strong> Pitutur luhur = amanat/pesan moral. Contoh: "Becik ketitik, ala ketara" = kebaikan akan terlihat, kejahatan akan tampak. Ini bukan tema (topik) dan bukan latar cerita.</div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q"><span class="quiz-q-num">10.</span> Sandhangan kang digunakake kanggo swara /u/ ing aksara Jawa yaiku...</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="ans(this,'wrong','q10')">A. Wulu — diletakkan di atas aksara</button>
+          <button class="quiz-opt" onclick="ans(this,'correct','q10')">B. Suku — diletakkan di bawah aksara</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q10')">C. Pepet — diletakkan di atas aksara</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q10')">D. Taling — diletakkan di depan aksara</button>
+        </div>
+        <div class="quiz-explain" id="exp-q10"><strong>Jawaban: B.</strong> Suku (◌ꦸ) = vokal /u/, diletakkan di bawah aksara. Hafalan: Wulu=i (atas) · Suku=u (bawah) · Pepet=ê (atas) · Taling=é (depan) · Taling tarung=o (depan+belakang).</div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q"><span class="quiz-q-num">11.</span> Sandhangan kang digunakake kanggo bunyi /ng/ ing pungkasan suku kata diarani...</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="ans(this,'wrong','q11')">A. Wignyan — bunyi /h/ di akhir</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q11')">B. Layar — bunyi /r/ di akhir</button>
+          <button class="quiz-opt" onclick="ans(this,'correct','q11')">C. Cecak — bunyi /ng/ di akhir</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q11')">D. Pangkon — mematikan vokal aksara</button>
+        </div>
+        <div class="quiz-explain" id="exp-q11"><strong>Jawaban: C.</strong> Cecak (◌ꦁ) = konsonan penutup /ng/. Hafalan panyigeg: Wignyan=h · Layar=r · Cecak=ng · Pangkon=mematikan vokal (pengganti pasangan).</div>
+      </div>
+
+      <div class="quiz-item">
+        <div class="quiz-q"><span class="quiz-q-num">12.</span> Ciri pariwara kang menarik saka segi basa kang PALING TEPAT yaiku...</div>
+        <div class="quiz-opts">
+          <button class="quiz-opt" onclick="ans(this,'wrong','q12')">A. Nggunakake basa krama inggil lan tembang macapat</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q12')">B. Ditulis kanthi panjang supaya informasi luwih lengkap</button>
+          <button class="quiz-opt" onclick="ans(this,'wrong','q12')">C. Mung nggunakake huruf kapital kabeh supaya ketok mencolok</button>
+          <button class="quiz-opt" onclick="ans(this,'correct','q12')">D. Singkat, padat, persuasif, positif, lan nggunakake purwakanthi supaya gampang dieling-eling</button>
+        </div>
+        <div class="quiz-explain" id="exp-q12"><strong>Jawaban: D.</strong> Ciri bahasa pariwara yang baik: singkat & jelas, persuasif (mengajak), kata-kata positif, dan sering menggunakan purwakanthi (rima) agar slogan mudah diingat. Contoh: <em>"Murah, Meriah, Berkah!"</em></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- RINGKASAN -->
+<div id="ringkasan" class="sec">
+  <div class="sec-page-hero" data-kanji="ꦫ">
+    <div class="sec-eyebrow">Review Akhir <span>Baca Malam Sebelum Ujian</span></div>
+    <h2>Ringkasan Cepat ⚡</h2>
+    <p>Semua poin penting yang sering muncul di ujian, disusun dalam satu halaman. Ideal untuk review kilat sebelum berangkat ujian.</p>
+  </div>
+  <div class="content">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-eyebrow">📢 Materi 1–5</div>
+        <div class="card-title">Pariwara</div>
+        <ul style="font-size:.83rem;line-height:2.1">
+          <li><strong>Pariwara</strong> = iklan Bahasa Jawa</li>
+          <li><strong>Tujuan:</strong> informatif, persuasif, reminder, reinforcing</li>
+          <li><strong>Jenis (media):</strong> cetak, elektronik, luar ruang</li>
+          <li><strong>Jenis (isi):</strong> komersial vs nonkomersial</li>
+          <li><strong>Jenis (sifat):</strong> informatif, persuasif, pengingat</li>
+          <li><strong>Struktur:</strong> Judul → Sub-headline → Body → Slogan → Identitas</li>
+          <li><strong>Ciri menarik:</strong> singkat, persuasif, purwakanthi, visual oke</li>
+          <li><strong>Unsur penarik:</strong> headline kuat, slogan, gambar, call to action</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">🎤 Materi 6–15</div>
+        <div class="card-title">Sesorah</div>
+        <ul style="font-size:.83rem;line-height:2.1">
+          <li><strong>Sesorah</strong> = pidato Bahasa Jawa</li>
+          <li><strong>Tujuan:</strong> informatif, persuasif, rekreatif, seremonial</li>
+          <li><strong>Fungsi duka:</strong> bela sungkawa, doa, menguatkan keluarga</li>
+          <li><strong>4 Metode:</strong> Naskah · Ngapalan · <u>Ekstemporan</u>★ · Impromptu</li>
+          <li><strong>Struktur URUT (hafal!):</strong><br>① Salam pambuka → ② Pakurmatan → ③ Puji syukur → ④ Wosing atur → ⑤ Panutup → ⑥ Salam panutup</li>
+          <li><strong>Wosing atur</strong> = ISI/pokok sesorah (ke-4, paling panjang)</li>
+          <li><strong>Kesesuaian:</strong> unggah-ungguh, suasana, hadirin, durasi</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">📖 Materi 16–19</div>
+        <div class="card-title">Novel Jawa</div>
+        <ul style="font-size:.83rem;line-height:2.1">
+          <li><strong>Novel</strong> = prosa panjang, juga disebut roman</li>
+          <li><strong>Jenis (kedadeyan):</strong> lawas/klasik vs anyar/modern</li>
+          <li><strong>Jenis (genre):</strong> romantis, detektif, sejarah, horor, petualangan</li>
+          <li><strong>Jenis (isi):</strong> sosial, psikologis, pendidikan, metropolis</li>
+          <li><strong>Struktur:</strong> Orientasi → Komplikasi → Klimaks → Antiklimaks → Konklusi</li>
+          <li><strong>Latar:</strong> waktu, tempat, suasana</li>
+          <li><strong>Watak:</strong> protagonis (baik) · antagonis (jahat) · tritagonis</li>
+          <li><strong>Pitutur luhur</strong> = amanat/pesan moral (≠ tema, ≠ latar)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-eyebrow">✍️ Materi 20–23</div>
+        <div class="card-title">Aksara Jawa</div>
+        <ul style="font-size:.83rem;line-height:2.1">
+          <li><strong>20 aksara dasar:</strong> Ha Na Ca Ra Ka / Da Ta Sa Wa La / Pa Dha Ja Ya Nya / Ma Ga Ba Tha Nga</li>
+          <li><strong>Semua aksara dasar = vokal /a/</strong></li>
+          <li><strong>Sandhangan vokal:</strong> Wulu(i)·Suku(u)·Pepet(ê)·Taling(é)·Taling tarung(o)</li>
+          <li><strong>Panyigeg:</strong> Wignyan(h)·Layar(r)·Cecak(ng)·Pangkon(mati)</li>
+          <li><strong>Pasangan</strong> = mematikan vokal aksara sebelumnya</li>
+          <li><strong>Angka Jawa:</strong> ꧐꧑꧒꧓꧔꧕꧖꧗꧘꧙ diapit ꧇...꧇</li>
+          <li><strong>Transliterasi:</strong> pisah suku kata → tulis aksara → sandhangan</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box box-gold" style="margin-top:8px">
+      <div class="box-label">🏆 Prioritas Hafalan — Yang Paling Sering Keluar</div>
+      <ol style="padding-left:18px;line-height:2.5">
+        <li><strong>Urutan 6 bagian struktur sesorah</strong> — ① Salam pambuka → ② Pakurmatan → ③ Puji syukur → ④ Wosing atur → ⑤ Panutup → ⑥ Salam panutup</li>
+        <li><strong>4 Metode sesorah</strong> — Naskah, Ngapalan, <em>Ekstemporan</em> (paling disarankan), Impromptu</li>
+        <li><strong>20 Aksara dasar Jawa</strong> — Ha Na Ca Ra Ka Da Ta Sa Wa La Pa Dha Ja Ya Nya Ma Ga Ba Tha Nga</li>
+        <li><strong>5 Sandhangan vokal</strong> — Wulu(i) · Suku(u) · Pepet(ê) · Taling(é) · Taling tarung(o)</li>
+        <li><strong>3 Panyigeg</strong> — Wignyan(h) · Layar(r) · Cecak(ng)</li>
+        <li><strong>3 Jenis novel</strong> — berdasarkan kedadeyan, genre, dan isi/paragane</li>
+        <li><strong>Struktur novel</strong> — Orientasi → Komplikasi → Klimaks → Antiklimaks → Konklusi</li>
+        <li><strong>Pitutur luhur ≠ tema</strong> — pitutur = pesan moral; tema = topik utama</li>
+        <li><strong>Wosing atur</strong> = ISI sesorah (bagian ke-4)</li>
+        <li><strong>Pariwara nonkomersial</strong> = layanan masyarakat, tidak mencari untung</li>
+      </ol>
+    </div>
+
+    <div class="box box-teal" style="margin-top:12px">
+      <div class="box-label">💡 Tips Mengerjakan Soal Ujian Bahasa Jawa</div>
+      <ul>
+        <li>Baca soal dengan sangat teliti — perhatikan kata kunci: <em>"struktur", "ciri", "jenis", "metode", "fungsi", "tujuan"</em></li>
+        <li>Soal sesorah: ingat urutan yang benar — <strong>pakurmatan SELALU setelah salam pambuka</strong>, tidak bisa terbalik</li>
+        <li>Soal aksara Jawa: baca pelan per aksara dari kiri ke kanan, jangan terburu-buru</li>
+        <li>Soal "wosing atur": jawaban selalu isi/pokok/inti sesorah (bagian ke-4)</li>
+        <li><strong>Pitutur luhur ≠ tema ≠ latar</strong> — tiga konsep ini sering membingungkan, hafalkan bedanya</li>
+        <li>Pariwara nonkomersial = untuk kepentingan umum, tidak mencari keuntungan ekonomi</li>
+        <li>Metode ekstemporan = pakai catatan kerangka/poin, BUKAN naskah lengkap, BUKAN hafalan</li>
+        <li>Sandhangan taling letaknya di DEPAN aksara (berbeda dari yang lain yang di atas/bawah)</li>
+      </ul>
+    </div>
+
+    <div style="margin-top:32px;text-align:center;padding:32px;background:var(--card2);border-radius:14px;border:1px solid var(--gold-dim);position:relative;overflow:hidden">
+      <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(212,168,67,.1) 0%,transparent 60%);pointer-events:none"></div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:var(--gold2);margin-bottom:8px;position:relative">Semangat Ujiannya, Faizal! 🌟</div>
+      <div style="font-size:.82rem;color:var(--text3);position:relative;line-height:1.8">Modul ini dibuat berdasarkan kisi-kisi resmi UAS Genap Bahasa Jawa Kelas XI<br>SMK Negeri 2 Klaten · Kurikulum Merdeka 2025/2026 · Tipe A</div>
+      <div style="margin-top:16px;font-family:'Noto Serif Javanese',serif;font-size:2.5rem;color:rgba(212,168,67,.25);position:relative;letter-spacing:.4rem">ꦱꦼꦩꦔꦠ꧀</div>
+    </div>
+  </div>
+</div>
+
+</main>
+<script>
+const visited=new Set(['home']);
+let correct=0,answered={};
+function go(id,btn){
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  const s=document.getElementById(id);
+  if(s)s.classList.add('active');
+  if(btn)btn.classList.add('active');
+  visited.add(id);
+  const topics=['pariwara','sesorah','novel','aksara','latihan','ringkasan'];
+  const seen=topics.filter(t=>visited.has(t)).length;
+  document.getElementById('progFill').style.width=(seen/topics.length*100)+'%';
+  document.getElementById('progText').textContent=seen+' / '+topics.length+' topik';
+  if(window.innerWidth<=960)document.getElementById('sidebar').classList.remove('open');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function ans(btn,result,qId){
+  if(answered[qId])return;
+  answered[qId]=true;
+  const opts=btn.closest('.quiz-opts').querySelectorAll('.quiz-opt');
+  opts.forEach(o=>o.disabled=true);
+  btn.classList.add(result);
+  if(result==='correct'){correct++;}
+  else{opts.forEach(o=>{if(o.onclick.toString().includes("'correct'"))o.classList.add('correct');});}
+  document.getElementById('exp-'+qId).classList.add('show');
+  const total=Object.keys(answered).length;
+  document.getElementById('scoreNum').textContent=correct;
+  document.getElementById('scoreDetail').textContent=correct+'/'+total;
+  document.getElementById('scoreFill').style.width=(total>0?Math.round(correct/total*100):0)+'%';
+}
+</script>
+</body>
+</html>
